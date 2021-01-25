@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/pulse.ogg-3d918080f6ce37b28782323cf52ef89d.oggstr"
+
+[deps]
+
+source_file="res://Sound/pulse.ogg"
+dest_files=[ "res://.import/pulse.ogg-3d918080f6ce37b28782323cf52ef89d.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

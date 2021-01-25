@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Sprites/powerbox.png" type="Texture" id=1]
+[ext_resource path="res://Objects/PowerBox.gd" type="Script" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+[node name="PowerBox" type="Node2D"]
+scale = Vector2( 4, 4 )
+script = ExtResource( 2 )
+
+[node name="EffectArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EffectArea"]
+scale = Vector2( 12, 12 )
+shape = SubResource( 1 )
+
+[node name="InteractArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
+position = Vector2( -11.1437, 5.96046e-08 )
+scale = Vector2( 0.491099, 1.28697 )
+shape = SubResource( 2 )
+
+[node name="BoxSprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )

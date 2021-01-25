@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/cock.ogg-71d21accff1445472fb8b1d66b9f5733.oggstr"
+
+[deps]
+
+source_file="res://Sound/cock.ogg"
+dest_files=[ "res://.import/cock.ogg-71d21accff1445472fb8b1d66b9f5733.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

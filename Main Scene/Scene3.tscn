@@ -1,0 +1,134 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://Main Scene/Alarm.gd" type="Script" id=1]
+[ext_resource path="res://Main Scene/BlackSprite.gd" type="Script" id=2]
+[ext_resource path="res://Objects/Cursor.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Objects/GunPickup.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Objects/Light.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Objects/PowerBox.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Objects/Player.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Objects/Soldier.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Sprites/black.png" type="Texture" id=9]
+[ext_resource path="res://Sound/alarm.ogg" type="AudioStream" id=10]
+[ext_resource path="res://Sound/ambient.ogg" type="AudioStream" id=11]
+[ext_resource path="res://Sound/pulse.ogg" type="AudioStream" id=12]
+[ext_resource path="res://Objects/MinimalTiles.tres" type="TileSet" id=13]
+[ext_resource path="res://Sound/darkambient3.ogg" type="AudioStream" id=14]
+[ext_resource path="res://Objects/Fade.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Objects/LevelEnd.tscn" type="PackedScene" id=16]
+[ext_resource path="res://monogram.ttf" type="DynamicFontData" id=17]
+[ext_resource path="res://Objects/OnScreen.tscn" type="PackedScene" id=18]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 17 )
+
+[node name="Scene1" type="Node2D"]
+
+[node name="Ambience2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+volume_db = -15.0
+autoplay = true
+
+[node name="Ambience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+volume_db = -6.0
+autoplay = true
+
+[node name="AmbientPulse" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+volume_db = -12.0
+autoplay = true
+
+[node name="Alarm" type="AudioStreamPlayer" parent="." groups=[
+"alarms",
+]]
+stream = ExtResource( 10 )
+volume_db = -25.0
+script = ExtResource( 1 )
+
+[node name="Black" type="ParallaxBackground" parent="."]
+
+[node name="BlackSprite" type="Sprite" parent="Black"]
+visible = false
+position = Vector2( 639.081, 354.858 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 9 )
+script = ExtResource( 2 )
+
+[node name="SceneObjects" type="Node2D" parent="."]
+
+[node name="Lights" type="Node2D" parent="SceneObjects"]
+
+[node name="Light" parent="SceneObjects/Lights" instance=ExtResource( 5 )]
+position = Vector2( 444.548, 49.2946 )
+
+[node name="Light2" parent="SceneObjects/Lights" instance=ExtResource( 5 )]
+position = Vector2( -125.552, -990.855 )
+
+[node name="TileMap" type="TileMap" parent="SceneObjects"]
+scale = Vector2( 4, 4 )
+tile_set = ExtResource( 13 )
+cell_size = Vector2( 16, 16 )
+collision_layer = 4
+collision_mask = 11
+format = 1
+tile_data = PoolIntArray( -2424818, 1, 0, -2424816, 1, 0, -2359280, 1, 0, -1900548, 0, 196611, -1900547, 0, 131073, -1900546, 0, 131073, -1900545, 0, 131073, -1966080, 0, 196610, -1835012, 0, 65538, -1835011, 0, 65537, -1835010, 0, 65537, -1835009, 0, 65537, -1900544, 0, 65536, -1769476, 0, 65538, -1769475, 0, 65537, -1769474, 0, 65537, -1769473, 0, 65537, -1835008, 0, 65536, -1703940, 0, 65538, -1703939, 0, 65537, -1703938, 0, 65537, -1703937, 0, 65537, -1769472, 0, 65536, -1638404, 0, 65538, -1638403, 0, 3, -1638402, 0, 3, -1638401, 0, 3, -1703936, 0, 65536, -1572868, 0, 65538, -1572867, 0, 65539, -1572866, 0, 65539, -1572865, 0, 65539, -1638400, 0, 65536, -1507332, 0, 65538, -1572864, 0, 65536, -1441796, 0, 65538, -1507328, 0, 65536, -1376260, 0, 65538, -1441792, 0, 65536, -1310724, 0, 65538, -1376256, 0, 65536, -1245188, 0, 65538, -1310720, 0, 65536, -1179652, 0, 65538, -1245184, 0, 65536, -1114118, 0, 196611, -1114117, 0, 131073, -1114116, 0, 131074, -1179648, 0, 65536, -1048582, 0, 65538, -1114112, 0, 65536, -983046, 0, 65538, -1048576, 0, 65536, -917510, 0, 65538, -983040, 0, 65536, -851974, 0, 196609, -851973, 0, 1, -851972, 0, 2, -917504, 0, 65536, -786436, 0, 65538, -851968, 0, 65536, -720900, 0, 65538, -786432, 0, 65536, -786415, 1, 0, -786414, 1, 0, -655364, 0, 65538, -655363, 0, 131075, -655362, 0, 131075, -655361, 0, 131075, -720896, 0, 65536, -720895, 1, 0, -720894, 1, 0, -720878, 1, 0, -589828, 0, 65538, -589827, 0, 3, -589826, 0, 3, -589825, 0, 3, -655360, 0, 65536, -655359, 1, 0, -524292, 0, 65538, -524291, 0, 3, -524290, 0, 3, -524289, 0, 3, -589824, 0, 65536, -458756, 0, 65538, -458755, 0, 3, -458754, 0, 3, -458753, 0, 3, -524288, 0, 65536, -524270, 1, 0, -393220, 0, 65538, -393219, 0, 3, -393218, 0, 3, -393217, 0, 3, -458752, 0, 65536, -458751, 0, 196611, -458750, 0, 131073, -458749, 0, 131073, -458748, 0, 131073, -458747, 0, 131073, -458746, 0, 131073, -458745, 0, 131073, -458744, 0, 131073, -458743, 0, 131073, -458742, 0, 131073, -458741, 0, 131073, -458740, 0, 131073, -458739, 0, 131073, -458738, 0, 131073, -458737, 0, 131073, -458736, 0, 131073, -458735, 0, 196610, -327684, 0, 65538, -327683, 0, 3, -327682, 0, 3, -327681, 0, 3, -393216, 0, 65536, -393215, 0, 65538, -393199, 0, 65536, -262148, 0, 65538, -262147, 0, 3, -262146, 0, 3, -262145, 0, 3, -327680, 0, 65536, -327679, 0, 65538, -327663, 0, 65536, -196612, 0, 65538, -196611, 0, 3, -196610, 0, 3, -196609, 0, 3, -262144, 0, 65536, -262143, 0, 65538, -262142, 1, 0, -262141, 1, 0, -262131, 1, 0, -262130, 1, 0, -262127, 0, 65536, -131076, 0, 65538, -131075, 0, 3, -131074, 0, 3, -131073, 0, 3, -196608, 0, 65536, -196607, 0, 65538, -196602, 1, 0, -196591, 0, 65536, -65540, 0, 65538, -65539, 0, 3, -65538, 0, 3, -65537, 0, 3, -131072, 0, 65536, -131071, 0, 196609, -131070, 0, 1, -131069, 0, 1, -131068, 0, 1, -131067, 0, 2, -131064, 0, 0, -131063, 0, 1, -131062, 0, 1, -131061, 0, 1, -131060, 0, 1, -131059, 0, 2, -131055, 0, 65536, -4, 0, 65538, -3, 0, 65539, -2, 0, 65539, -1, 0, 65539, -65536, 0, 131072, -65535, 0, 131073, -65534, 0, 131073, -65533, 0, 131073, -65532, 0, 131073, -65531, 0, 131074, -65528, 0, 131072, -65527, 0, 131073, -65526, 0, 131073, -65525, 0, 131073, -65524, 0, 131073, -65523, 0, 131074, -65519, 0, 65536, 65532, 0, 65538, 6, 1, 0, 13, 1, 0, 17, 0, 65536, 131068, 0, 65538, 65553, 0, 65536, 196604, 0, 65538, 131089, 0, 65536, 262140, 0, 196609, 262141, 0, 1, 262142, 0, 1, 262143, 0, 1, 196608, 0, 1, 196609, 0, 1, 196610, 0, 1, 196611, 0, 2, 196614, 0, 0, 196615, 0, 2, 196620, 0, 0, 196621, 0, 1, 196622, 0, 1, 196623, 0, 1, 196624, 0, 1, 196625, 0, 196608, 262144, 0, 196611, 262145, 0, 131073, 262146, 0, 131073, 262147, 0, 131074, 262148, 0, 131075, 262149, 0, 131075, 262150, 0, 65536, 262151, 0, 65538, 262156, 0, 65536, 262157, 1, 0, 327680, 0, 65538, 327681, 0, 3, 327682, 0, 3, 327683, 0, 3, 327684, 0, 3, 327685, 0, 3, 327686, 0, 65536, 327687, 0, 65538, 327692, 0, 65536, 327693, 1, 65536, 393216, 0, 65538, 393217, 0, 3, 393218, 0, 3, 393219, 0, 3, 393220, 0, 3, 393221, 0, 3, 393222, 0, 65536, 393223, 0, 65538, 393224, 0, 131075, 393225, 0, 131075, 393226, 0, 131075, 393227, 0, 131075, 393228, 0, 65536, 393229, 1, 65536, 393231, 2, 0, 458752, 0, 65538, 458753, 0, 3, 458754, 0, 3, 458755, 0, 3, 458756, 0, 3, 458757, 0, 3, 458758, 0, 65536, 458759, 0, 65538, 458760, 0, 3, 458761, 0, 3, 458762, 0, 3, 458763, 0, 3, 458764, 0, 65536, 458765, 1, 65536, 458767, 2, 0, 524288, 0, 65538, 524289, 0, 3, 524290, 0, 3, 524291, 0, 3, 524292, 0, 3, 524293, 0, 3, 524294, 0, 65536, 524295, 0, 65538, 524296, 0, 65537, 524297, 0, 65537, 524298, 0, 65537, 524299, 0, 65537, 524300, 0, 65536, 524301, 1, 65536, 524303, 2, 0, 589824, 0, 196609, 589825, 0, 1, 589826, 0, 1, 589827, 0, 1, 589828, 0, 1, 589829, 0, 1, 589830, 0, 196608, 589831, 0, 65538, 589832, 0, 65537, 589833, 0, 65537, 589834, 0, 65537, 589835, 0, 65537, 589836, 0, 65536, 589837, 1, 65536, 655366, 1, 65538, 655367, 0, 65538, 655368, 0, 65537, 655369, 0, 65537, 655370, 0, 65537, 655371, 0, 65537, 655372, 0, 65536, 655373, 1, 65536, 720902, 1, 65538, 720903, 0, 65538, 720904, 0, 65537, 720905, 0, 65537, 720906, 0, 65537, 720907, 0, 65537, 720908, 0, 65536, 720909, 1, 65536, 786438, 1, 196609, 786439, 0, 196609, 786440, 0, 1, 786441, 0, 1, 786442, 0, 1, 786443, 0, 1, 786444, 0, 196608, 786445, 1, 196608 )
+
+[node name="ThrownGuns" type="Node2D" parent="SceneObjects"]
+
+[node name="PowerBoxes" type="Node2D" parent="SceneObjects"]
+
+[node name="PowerBox" parent="SceneObjects/PowerBoxes" instance=ExtResource( 6 )]
+position = Vector2( 188.394, -256.056 )
+
+[node name="GunPickups" type="Node2D" parent="SceneObjects"]
+
+[node name="GunPickup" parent="SceneObjects/GunPickups" instance=ExtResource( 4 )]
+position = Vector2( 225.103, 446.881 )
+
+[node name="Soldiers" type="Node2D" parent="SceneObjects"]
+
+[node name="Soldier" parent="SceneObjects/Soldiers" instance=ExtResource( 8 )]
+position = Vector2( 274.002, 81.5669 )
+rotation = -0.188933
+
+[node name="Soldier2" parent="SceneObjects/Soldiers" instance=ExtResource( 8 )]
+position = Vector2( -239.466, -988.787 )
+
+[node name="LightAreas" type="Node2D" parent="SceneObjects"]
+
+[node name="Overlays" type="Node2D" parent="SceneObjects"]
+
+[node name="OnScreen" parent="SceneObjects/Overlays" instance=ExtResource( 18 )]
+position = Vector2( -126.423, -333.148 )
+scale = Vector2( 4.61538, 15 )
+
+[node name="Label" type="Label" parent="SceneObjects/Overlays/OnScreen"]
+margin_left = -20.8662
+margin_top = -0.455803
+margin_right = 69.1338
+margin_bottom = 28.5442
+rect_scale = Vector2( 0.626295, 0.24472 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Clear them
+out."
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player" parent="." instance=ExtResource( 7 )]
+position = Vector2( 641.348, 638.353 )
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+current = true
+
+[node name="Fade" parent="Player" instance=ExtResource( 15 )]
+
+[node name="Cursor" parent="." instance=ExtResource( 3 )]
+
+[node name="LevelEnd" parent="." instance=ExtResource( 16 )]
+position = Vector2( -92.7132, -1794.72 )
+scale = Vector2( 10.0066, 8.95402 )

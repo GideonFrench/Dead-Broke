@@ -1,0 +1,116 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Objects/Yourself.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/soldiergun.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/cprotagidle.png" type="Texture" id=3]
+[ext_resource path="res://Sound/thump2.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Sprites/protagdead.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/viewcone2.png" type="Texture" id=6]
+[ext_resource path="res://Sound/siren.ogg" type="AudioStream" id=7]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[sub_resource type="CircleShape2D" id=2]
+
+[sub_resource type="Animation" id=3]
+length = 0.45
+tracks/0/type = "audio"
+tracks/0/path = NodePath("ThumpSound")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 4 )
+} ],
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ThumpSound:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -5.0, -5.0, -80.0 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("ThumpSound")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "stop"
+}, {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[node name="Soldier" type="KinematicBody2D" groups=[
+"soldiers",
+]]
+scale = Vector2( 4, 4 )
+collision_layer = 2
+collision_mask = 5
+script = ExtResource( 1 )
+
+[node name="Siren" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = -10.0
+
+[node name="DetectionArea" type="Area2D" parent="."]
+visible = false
+
+[node name="ViewconeVision" type="CollisionPolygon2D" parent="DetectionArea"]
+polygon = PoolVector2Array( 4, 0, 55, 28, 55, -28 )
+
+[node name="PeripheralVision" type="CollisionShape2D" parent="DetectionArea"]
+scale = Vector2( 1.53967, 1.53967 )
+shape = SubResource( 1 )
+
+[node name="Viewcone" type="Sprite" parent="DetectionArea"]
+modulate = Color( 1, 1, 1, 0.192157 )
+position = Vector2( 35, 0 )
+texture = ExtResource( 6 )
+
+[node name="MainCollision" type="CollisionShape2D" parent="."]
+scale = Vector2( 1.18213, 1.18213 )
+shape = SubResource( 2 )
+
+[node name="Idle" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+
+[node name="GunIdle" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 2 )
+
+[node name="Dead" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Thump = SubResource( 3 )
+
+[node name="ThumpTimer" type="Timer" parent="."]
+wait_time = 0.05
+
+[node name="ThumpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -5.0
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 10.0
+[connection signal="timeout" from="ThumpTimer" to="." method="_on_ThumpTimer_timeout"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]

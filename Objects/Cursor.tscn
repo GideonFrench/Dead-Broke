@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Sprites/cursor.png" type="Texture" id=1]
+[ext_resource path="res://Objects/Cursor.gd" type="Script" id=2]
+
+[node name="Cursor" type="KinematicBody2D"]
+scale = Vector2( 2, 2 )
+script = ExtResource( 2 )
+
+[node name="CursorSprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )

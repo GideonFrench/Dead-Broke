@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/electrichum.ogg-ce554222f8acb202db20b3ecf5664dd0.oggstr"
+
+[deps]
+
+source_file="res://Sound/electrichum.ogg"
+dest_files=[ "res://.import/electrichum.ogg-ce554222f8acb202db20b3ecf5664dd0.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

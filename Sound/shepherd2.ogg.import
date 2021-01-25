@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/shepherd2.ogg-5537e100320776b4deed32c9a1903c8b.oggstr"
+
+[deps]
+
+source_file="res://Sound/shepherd2.ogg"
+dest_files=[ "res://.import/shepherd2.ogg-5537e100320776b4deed32c9a1903c8b.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

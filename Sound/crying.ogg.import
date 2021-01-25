@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/crying.ogg-b999569c3ca546ac108759bed2d6580e.oggstr"
+
+[deps]
+
+source_file="res://Sound/crying.ogg"
+dest_files=[ "res://.import/crying.ogg-b999569c3ca546ac108759bed2d6580e.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
